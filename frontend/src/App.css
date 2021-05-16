@@ -12,5 +12,56 @@
   background: var(--white);
   display: flex;
   padding: 0 200px;
+}
 
+.navbar_first { 
+  width: 33.333333333333%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.navbar_first-logo{
+  margin-top: 4px;
+}
+
+.navbar_first-logo img {
+  object-fit: cover;
+  display: block;
+}
+
+.navbar_middle{
+  width: 33.333333333333%;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar_middle-search {
+  position: relative;
+}
+
+.navbar_search {
+  background: #fafafa;
+  border: 1px solid #d2dbdb;
+  padding: 7px 25px;
+  border-radius: 3px;
+  outline: none;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.navbar_last {
+  width: 33.333333333333%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar_last li {
+  list-style-type: none;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.navbar_icons {
+  font-size: 25px;
+  cursor: pointer;
 }
