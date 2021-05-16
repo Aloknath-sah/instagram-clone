@@ -1,11 +1,14 @@
 import './App.css';
 import Navbar from './Components/Navbar';
+import Model from './Components/Model'
+import Context from './Global/Context'
 
 function App() {
   return (
-    <div className="App">
+    <Context>
       <Navbar/>
-    </div>
+      <Model/>
+    </Context>
   );
 }
 

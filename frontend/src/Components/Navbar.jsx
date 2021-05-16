@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { FaTelegramPlane, FaRegCompass, FaRegHeart } from 'react-icons/fa';
 import { MdHome } from 'react-icons/md';
+import {ContextProvider} from '../Global/Context'
 
 const Navbar = () => {
+    const {model, openModel} = useContext(ContextProvider)
+    console.log("my model", model)
+    const openForms = () => {
+        openModel();
+    }
     return (
         <div className="navbar">
             <div className="navbar_first">
@@ -28,11 +34,10 @@ const Navbar = () => {
                 <li>
                     <FaRegHeart className="navbar_icons" />
                 </li>
-                <li>
+                <li onClick={openForms}>
                     Register/login
                 </li>
             </div>
-        
         </div>
     );
 }
