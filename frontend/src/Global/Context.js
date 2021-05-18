@@ -1,11 +1,14 @@
 import React, {createContext, useState} from 'react';
-import { auth } from "../config";
+import { auth, db, storage } from "../config";
+import firebase from 'firebase';
 export const ContextProvider = createContext();
+
 
 const Context = (props) => {
     const [model, setModel] = useState(false)
     const [user, setUser] = React.useState(null);
     const [loader, setLoader] = React.useState(true)
+    const [posts, setPosts] = React.useState([]);
     const openModel = () => {
         setModel(true)
     }
@@ -47,24 +50,63 @@ const Context = (props) => {
             setLoader(false);
         });
     
-        // fetch posts from firebase
-        // db.collection("posts")
-        //     .orderBy("currentTime", "desc")
-        //     .onSnapshot((snp) => {
-        //         setPosts(
-        //         snp.docs.map((doc) => ({
-        //             id: doc.id,
-        //             title: doc.data().title,
-        //             image: doc.data().image,
-        //             username: doc.data().username,
-        //         }))
-        //     );
-        // });
+        //fetch posts from firebase
+        db.collection("posts")
+            .orderBy("currentTime", "desc")
+            .onSnapshot((snp) => {
+                setPosts(
+                snp.docs.map((doc) => ({
+                    id: doc.id,
+                    title: doc.data().title,
+                    image: doc.data().image,
+                    username: doc.data().username,
+                }))
+            );
+        });
     }, [user, loader]);
     console.log("Login user", user);
 
+    const create = (data) => {
+        const { title, image } = data;
+        const upload = storage.ref(`images/${image.name}`).put(image);
+        upload.on(
+          "state_changed",
+          (snp) => {
+            let progress = (snp.bytesTransferred / snp.totalBytes) * 100;
+            console.log(progress);
+          },
+          (err) => {
+            console.log(err);
+          },
+          () => {
+            //success function/complete function
+            storage
+              .ref("images")
+              .child(image.name)
+              .getDownloadURL()
+              .then((url) => {
+                db.collection("posts").add({
+                  title,
+                  image: url,
+                  username: user.displayName,
+                  currentTime: firebase.firestore.FieldValue.serverTimestamp(),
+                });
+              });
+          }
+        );
+      };
+
+      const publishComment = (data) => {
+        const { id, comment } = data;
+        db.collection("posts").doc(id).collection("comments").add({
+          comment,
+          username: user.displayName,
+          currentTime: firebase.firestore.FieldValue.serverTimestamp(),
+        });
+      };
+
     return (
-        <ContextProvider.Provider value={{model, openModel, closeModel, register, login, user, loader, logout}}>
+        <ContextProvider.Provider value={{model, openModel, closeModel, register, login, user, loader, logout, create, posts, publishComment}}>
             {props.children}
         </ContextProvider.Provider>
     );
