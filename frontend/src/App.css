@@ -282,3 +282,73 @@
   color: silver;
   font-weight: 300;
 }
+.sidebar {
+  position: fixed;
+  top: 100px;
+  right: 200px;
+  width: 25%;
+  padding-left: 25px;
+}
+.sidebar__user {
+  display: flex;
+  align-items: center;
+}
+.sidebar__user-avator {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--white);
+  background: #f83a63;
+  border-radius: 50%;
+  text-transform: uppercase;
+}
+.sidebar__user-name {
+  padding-left: 10px;
+  text-transform: capitalize;
+}
+.sidebar__list {
+  margin: 20px 0;
+}
+.sidebar__list h3 {
+  font-size: 15px;
+  font-weight: 400;
+  color: silver;
+}
+.sidebar__list-user {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  margin-top: 10px;
+}
+.sidebar__list-a {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+.sidebar__list-a-img {
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.sidebar__list-a-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.sidebar__list-a-name {
+  margin-left: 8px;
+  font-size: 14px;
+}
+.sidebar__list-b {
+  flex: 1;
+  text-align: right;
+}
+.sidebar__list-b a {
+  text-decoration: none;
+  color: #098bbe;
+  font-size: 14px;
+}
