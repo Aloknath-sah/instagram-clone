@@ -12,8 +12,8 @@ const Sidebar = () => {
         <div className="sidebar">
         {!loader && user ? (
             <div className="sidebar__user">
-            <div className="sidebar__user-avator">{username[0]}</div>
-            <div className="sidebar__user-name">{username}</div>
+                <div className="sidebar__user-avator">{username[0]}</div>
+                <div className="sidebar__user-name">{username}</div>
             </div>
         ) : (
             ""

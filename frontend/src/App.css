@@ -3,6 +3,10 @@
   --black: #000;
 }
 
+a {
+  text-decoration: none;
+}
+
 .navbar {
   position: fixed;
   top: 0;
@@ -283,9 +287,9 @@
   font-weight: 300;
 }
 .sidebar {
-  position: fixed;
-  top: 100px;
-  right: 200px;
+  
+  
+  right: 0px;
   width: 25%;
   padding-left: 25px;
 }

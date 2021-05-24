@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import { FaTelegramPlane, FaRegCompass, FaRegHeart } from 'react-icons/fa';
 import { MdHome } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 import {ContextProvider} from '../Global/Context'
 
 const Navbar = () => {
@@ -48,7 +49,7 @@ const Navbar = () => {
                     <FaTelegramPlane className="navbar_icons" />
                 </li>
                 <li>
-                    <FaRegCompass className="navbar_icons" />
+                    <Link to="/explore" ><FaRegCompass className="navbar_icons" /></Link>
                 </li>
                 <li>
                     <FaRegHeart className="navbar_icons" />
